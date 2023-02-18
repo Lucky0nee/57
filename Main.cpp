@@ -6,24 +6,16 @@ class Stos {
 public:
     Stos() { }
 
-    void push(int Symbol) {
+    void operator+(int Symbol) {
         Symbols.push_back(Symbol);
     }
 
-    void pop() {
+    void operator-() {
         Symbols.pop_back();
     }
 
-    void ShowStos() {
-        cout << top(0) << "\n";
-    }
-
-    int top(int something = 0) {
-        return Symbols[getSize() - something];
-    }
-
-    int getSize() {
-        return Symbols.size() - 1;
+    int operator*(int something) {
+        return Symbols[Symbols.size() - 1 - something];
     }
 
 private:
@@ -40,7 +32,7 @@ int main() {
     cout << "How many elements to output: "; cin >> out_size;
 
     for (int i = 0; i < in_size; ++i) {
-        cout << "Write number: "; cin >> i_temp; stos.push(i_temp);
+        cout << "Write number: "; cin >> i_temp; stos+(i_temp);
     }
 
     for (int i = 0; i < out_size; ++i) {
@@ -49,7 +41,7 @@ int main() {
             break;
         }
 
-        cout << "\nNumber: " << stos.top(counter); counter++; in_size--;
+        cout << "\nNumber: " << stos*(counter); counter++; in_size--;
     }
 
     return 0;
