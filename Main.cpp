@@ -15,11 +15,11 @@ public:
     }
 
     void ShowStos() {
-        cout << top() << "\n";
+        cout << top(0) << "\n";
     }
 
-    int top() {
-        return Symbols[getSize()];
+    int top(int something = 0) {
+        return Symbols[getSize() - something];
     }
 
     int getSize() {
@@ -30,24 +30,26 @@ private:
     vector<int> Symbols;
 };
 
+
 int main() {
     Stos stos;
     int i_temp;
     int in_size, out_size;
+    int counter = 0;
     cout << "How many values should be recorded: "; cin >> in_size;
     cout << "How many elements to output: "; cin >> out_size;
 
     for (int i = 0; i < in_size; ++i) {
-        cout << "Write symbol: "; cin >> i_temp; stos.push(i_temp);
+        cout << "Write number: "; cin >> i_temp; stos.push(i_temp);
     }
 
     for (int i = 0; i < out_size; ++i) {
-        if (stos.getSize() == -1) {
+        if (in_size == 0) {
             cout << "\nStos - empty";
             break;
         }
 
-        cout << "\nSymbol: " << stos.top(); stos.pop();
+        cout << "\nNumber: " << stos.top(counter); counter++; in_size--;
     }
 
     return 0;
